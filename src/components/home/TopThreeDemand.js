@@ -67,7 +67,7 @@ const Card = ({ data }) => {
                         lineHeight={0}
                         boxShadow="inset 0 0 1px 1px rgba(0, 0, 0, 0.015)"
                     >
-                        <Icon as={FaHeart} w={6} h={6} color="white" />
+                        <Icon as={FaHeart} w={4} h={4} color="white" />
                     </Flex>
                     <VStack spacing={0} align="start" maxW="lg" h="100%">
                         <HStack spacing={2}>

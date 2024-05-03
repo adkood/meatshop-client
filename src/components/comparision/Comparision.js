@@ -9,6 +9,7 @@ import {
     Heading,
     Text,
     Divider,
+    Checkbox,
 } from '@chakra-ui/react'
 import { FaArrowTrendUp, FaArrowTrendDown } from "react-icons/fa6";
 import { MdOutlineCompareArrows } from "react-icons/md";
@@ -24,7 +25,15 @@ const Comparison = () => {
     const [overall, setOverall] = useState({});
 
     const dispatch = useDispatch();
-    const comparisonState = useSelector((state) => state.comparison.comparisonState);
+
+    const yearSelected = useSelector((state) => state.comparison.yearSelected);
+    const monthSelected = useSelector((state) => state.comparison.monthSelected);
+    const weekSelected = useSelector((state) => state.comparison.weekSelected);
+
+    let comparisonState = ``;
+    if (yearSelected) comparisonState = 'year';
+    if (monthSelected) comparisonState = 'month';
+    if (weekSelected) comparisonState = 'week';
 
     const fetchComparisonData = async () => {
         try {
@@ -36,7 +45,7 @@ const Comparison = () => {
             else {
                 url += process.env.REACT_APP_API_KEY_PROD;
             }
-            
+
             const response = await axios.get(url + `/api/transactions/prev-comp?compare=${comparisonState}`);
             setPrevData(response.data.data.previousData.overall[0]);
             setCurrData(response.data.data.currentData.overall[0]);
@@ -50,7 +59,6 @@ const Comparison = () => {
         fetchComparisonData();
     }, [comparisonState])
 
-
     console.log(prevData, currData, overall);
 
     return (
@@ -61,12 +69,16 @@ const Comparison = () => {
                     <Heading fontSize={"1.6rem"} >COMPARISON TABLE</Heading>
                     <MdOutlineCompareArrows style={{ marginLeft: "10px" }} fontSize="3rem" />
                 </Flex>
-                <Flex width={"30%"} height={"100%"} justifyContent={"center"} alignItems={"center"} >
-                    <Text fontWeight={"bold"} fontSize={"1rem"} ml={2} cursor={"pointer"} onClick={() => { dispatch(comparisonActions.setComparisonState('year')) }} color={comparisonState === 'year' ? 'cornflowerblue' : '#36454F'}>YEAR</Text>
-                    <Text fontWeight={"bold"} fontSize={"1.5rem"} ml={2}>/</Text>
-                    <Text fontWeight={"bold"} fontSize={"1rem"} ml={2} cursor={"pointer"} onClick={() => { dispatch(comparisonActions.setComparisonState('month')) }} color={comparisonState === 'month' ? 'cornflowerblue' : '#36454F'}>MONTH</Text>
-                    <Text fontWeight={"bold"} fontSize={"1.5rem"} ml={2}>/</Text>
-                    <Text fontWeight={"bold"} fontSize={"1rem"} ml={2} cursor={"pointer"} onClick={() => { dispatch(comparisonActions.setComparisonState('week')) }} color={comparisonState === 'week' ? 'cornflowerblue' : '#36454F'}>WEEK</Text>
+                <Flex width={"20%"} height={"100%"} justifyContent={"space-between"} alignItems={"center"} >
+                    <Checkbox size='lg' isChecked={yearSelected} onChange={() => { dispatch(comparisonActions.selectYear()) }} colorScheme='orange'>
+                        YEAR
+                    </Checkbox>
+                    <Checkbox size='lg' isChecked={monthSelected} onChange={() => { dispatch(comparisonActions.selectMonth()) }} colorScheme='orange'>
+                        MONTH
+                    </Checkbox>
+                    <Checkbox size='lg' isChecked={weekSelected} onChange={() => { dispatch(comparisonActions.selectWeek()) }} colorScheme='orange'>
+                        WEEK
+                    </Checkbox>
                 </Flex>
             </Flex>
             <Divider />

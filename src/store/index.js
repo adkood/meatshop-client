@@ -59,15 +59,29 @@ const outletSlice = createSlice({
 });
 
 const initialComparisonState = {
-    comparisonState: "year"
+    yearSelected: true,
+    monthSelected: false,
+    weekSelected: false
 }
 
 const comparisonSlice = createSlice({
     name: "comparison",
     initialState: initialComparisonState,
     reducers: {
-        setComparisonState(state, action) {
-            state.comparisonState = action.payload;
+        selectYear(state) {
+            state.yearSelected = true;
+            state.monthSelected = false;
+            state.weekSelected = false;
+        },
+        selectMonth(state) {
+            state.yearSelected = false;
+            state.monthSelected = true;
+            state.weekSelected = false;
+        },
+        selectWeek(state) {
+            state.yearSelected = false;
+            state.monthSelected = false;
+            state.weekSelected = true;
         }
     }
 });

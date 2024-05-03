@@ -103,7 +103,7 @@ const Card = ({ data }) => {
                                 @
                             </Text>
                             <Text ml={5} as="h2" color={"cornflowerblue"} fontSize="lg" fontWeight="bold">
-                                {data.pricePerKg}
+                                {data.pricePerKg} /Kg.
                             </Text>
                         </HStack>
                     </VStack>
