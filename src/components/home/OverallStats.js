@@ -5,14 +5,14 @@ import {
   Text,
   useColorModeValue,
   Flex,
-  Link,
   Icon,
   SimpleGrid,
-  Container,
-  Stack
+  Stack,
+  Divider,
+  AbsoluteCenter,
+  Box
 } from '@chakra-ui/react';
 import { motion } from 'framer-motion';
-import { BsArrowUpShort, BsArrowDownShort } from 'react-icons/bs';
 import { IoStatsChartOutline } from "react-icons/io5";
 import axios from 'axios';
 
@@ -56,13 +56,19 @@ const QverallStats = () => {
   }, []);
 
   return (
-    <Container maxW="6xl">
-      <SimpleGrid columns={{ base: 1, sm: 1, md: 1 }} spacing={2}>
+    <Flex width={"100%"} direction={"column"} justifyContent={"center"} alignItems={"center"} mb={7}>
+      <Box position='relative' p={10}  width={"100%"}>
+        <Divider borderColor='cornflowerblue' />
+        <AbsoluteCenter bg={"#F0F8FF"} color='cornflowerblue' fontSize={"1.2rem"} p='2'>
+          OVERVIEW
+        </AbsoluteCenter>
+      </Box>
+      <SimpleGrid width={"95%"} columns={{ base: 1, sm: 1, md: 1 }} spacing={2}>
         {data.map((data, index) => (
           <Card key={index} data={data} />
         ))}
       </SimpleGrid>
-    </Container>
+    </Flex>
   );
 };
 

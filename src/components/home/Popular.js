@@ -1,8 +1,8 @@
 import { useEffect, useState } from 'react';
 import axios from 'axios';
-import PolarChart from '../../utils/PolarChart';
+import PieChart from '../../utils/PieChart';
 import { DEFAULT_POPULAR_DATA } from '../../utils/Constants';
-import { Box } from '@chakra-ui/react';
+import { Box, Divider, AbsoluteCenter } from '@chakra-ui/react';
 import { useDispatch } from 'react-redux';
 import { outletActions } from '../../store';
 
@@ -57,18 +57,18 @@ const Popular = () => {
                     label: "Popularity",
                     data: newArr,
                     backgroundColor: [
-                        'rgba(255, 99, 132, 0.7)',
-                        'rgba(255, 159, 64, 0.7)',
+                        'rgba(153, 102, 255, 0.7)',
+                        'rgba(201, 203, 207, 0.7)',
                         'rgba(255, 205, 86, 0.7)',
-                        'rgba(75, 192, 192, 0.7)',
-                        'rgba(54, 162, 235, 0.7)',
+                        'rgba(75, 192, 255, 0.7)',
+                        'rgba(54, 162, 155, 0.7)'
                     ],
                     borderColor: [
-                        'rgb(255, 99, 132)',
-                        'rgb(255, 159, 64)',
+                        'rgba(153, 102, 255)',
+                        'rgba(201, 203, 207)',
                         'rgb(255, 205, 86)',
-                        'rgb(75, 192, 192)',
-                        'rgb(54, 162, 235)',
+                        'rgb(75, 192, 255)',
+                        'rgb(54, 162, 155)'
                     ],
                 }]
             }
@@ -91,8 +91,14 @@ const Popular = () => {
     }, []);
 
     return (
-        <Box >
-            <PolarChart chartData={data} />
+        <Box mb={"100px"}>
+            <Box position='relative' p={10} width={"100%"}>
+                <Divider borderColor='cornflowerblue' />
+                <AbsoluteCenter display={"flex"} alignItems={"center"} justifyContent={"center"} color={"cornflowerblue"} bg={"#F0F8FF"} fontSize={"1.2rem"} p='2'>
+                    POPULARITY CHART
+                </AbsoluteCenter>
+            </Box>
+            <PieChart chartData={data} />
         </Box>
     );
 

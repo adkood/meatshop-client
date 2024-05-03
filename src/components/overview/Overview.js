@@ -49,16 +49,16 @@ const Overview = () => {
                 POPULARITY / OVERVIEW
             </AbsoluteCenter>
         </Box>
-        <Flex mt={5} mb={13} direction={{ base: 'column', md: 'column', lg: "row" }} justify="space-around" align="center" width={"85%"} p={5} borderRadius={"5px"} bgColor={"#F0F8FF"} boxShadow={"1px 4px 4px grey"}>
-            <Flex justifyContent={"center"} alignContent={"center"} width={"40%"} height={"500px"}>
+        <Flex height={"100%"} mt={5} mb={13} direction={{ base: 'column', md: 'column', lg: "row" }} justify="space-around" align="center" width={"85%"} p={5} borderRadius={"5px"} bgColor={"#F0F8FF"} boxShadow={"1px 4px 4px grey"}>
+            <Flex justifyContent={"center"} width={"34%"} height={'100%'}>
                 <Popular />
             </Flex>
-            <Flex mb={2} height={"100%"} width={"60%"} justifyContent={"center"} alignItems={"center"}>
-                <Flex direction={"column"} width={"40%"} height={"100%"} alignItems={"center"}>
+            <Flex mb={2} height={"100%"} width={"66%"} justifyContent={"center"} alignItems={"center"}>
+                <Flex direction={"column"} width={"45%"}  height={"100%"} alignItems={"center"}>
                     <Meatlist />
                     <TopThreeDemand />
                 </Flex>
-                <Flex width={"60%"} height={"100%"} justifyContent={"center"} alignItems={"center"} p={1}>
+                <Flex width={"55%"} height={"100%"} justifyContent={"center"} alignItems={"center"} p={1}>
                     <OverallStats />
                 </Flex>
             </Flex>
